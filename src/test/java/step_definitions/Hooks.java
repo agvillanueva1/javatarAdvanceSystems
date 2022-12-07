@@ -16,8 +16,11 @@ public class Hooks {
     }
 
     @After
-    public void tearDown(){
-        //  BrowserUtils.quitDriver();
+    public void tearDown(Scenario scenario){
+        if (scenario.isFailed()){
+            CucumberLogUtils.logFail("Scenario failed", true);
+        }
+        BrowserUtils.quitDriver();
     }
 
 }

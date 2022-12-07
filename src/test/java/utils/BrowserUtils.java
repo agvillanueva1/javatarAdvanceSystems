@@ -2,7 +2,6 @@ package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,8 +26,7 @@ public class BrowserUtils {
     private static WebDriver driver;
 
     public static WebDriver getDriver(){
-        if (driver == null)
-            initializeDriver("chrome");
+        initializeDriver("chrome");
         return driver;
     }
 
@@ -46,38 +44,20 @@ public class BrowserUtils {
         }
     }
 
-    private static void initializeDriver(String browser) {
-        if (ConfigReader.readProperty("runInSaucelabs").equalsIgnoreCase("true")) {
-            String sauceUsername = "oauth-auv2-3e626";
-            String sauceKey = "3bf3c892-d188-4381-aca2-82b3810b7026";
-            String sauceURL = "https://"+sauceUsername+":"+sauceKey+"@ondemand.us-west-1.saucelabs.com:443/wd/hub";
 
-            try {
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability("version", "107");
-                capabilities.setCapability("platform", "Windows 11");
-                driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        } else {
-            switch (browser) {
-                case "chrome":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
-                case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
-                default:
-                    System.out.println("Invalid browser name");
-            }
-
+    private static void initializeDriver(String browser){
+        switch (browser){
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            default:
+                System.out.println("Invalid browser name");
         }
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(ConfigReader.readProperty("url"));
@@ -197,31 +177,10 @@ public class BrowserUtils {
         }
     }
 
-
-    public static void selectDropDownValue(By locator, String type, String value){
-        Select select = new Select(driver.findElement(locator));
-
-        switch (type){
-            case "index" :
-                select.selectByIndex(Integer.parseInt(value));
-                break;
-            case "value" :
-                select.selectByValue(value);
-                break;
-            case "visibletext" :
-                select.selectByVisibleText(value);
-                break;
-            default:
-                System.out.println("try again");
-                break;
-        }
-    }
-
     public static void selectByVisibleText(WebElement element, String text){
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
-
 
 
 
