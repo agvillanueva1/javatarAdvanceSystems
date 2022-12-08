@@ -3,6 +3,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 import pages.HomePage;
@@ -26,4 +27,19 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertEquals(titleText, actualTitleText);
     }
 
+    @Then("Verify address {string} is displayed")
+    public void verifyAddressIsDisplayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT, txt)
+        )));
+    }
+
+    @Then("Verify phone number {string} is displayed")
+    public void verifyPhoneNumberIsDisplayed(String phone) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT, phone)
+        )));
+    }
+
 }
+
