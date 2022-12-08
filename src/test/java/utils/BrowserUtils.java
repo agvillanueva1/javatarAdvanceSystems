@@ -26,7 +26,8 @@ public class BrowserUtils {
     private static WebDriver driver;
 
     public static WebDriver getDriver(){
-        initializeDriver("chrome");
+        if (driver == null)
+            initializeDriver("chrome");
         return driver;
     }
 
