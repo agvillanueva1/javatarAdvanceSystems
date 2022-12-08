@@ -3,6 +3,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
@@ -20,7 +21,9 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.getDriver();
     }
     @Then("Verify title text is {string}")
-    public void verify_title_text_is(String string) {
-        System.out.println(BrowserUtils.getDriver().getTitle());
+    public void verify_title_text_is(String titleText) {
+        String actualTitleText = BrowserUtils.getDriver().getTitle();
+        BrowserUtils.assertEquals(titleText, actualTitleText);
     }
+
 }
