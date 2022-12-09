@@ -19,3 +19,10 @@ Feature: Home page tests
     Then Verify footer "Phone: +1 703-831-3217" is displayed
     Then Verify footer "Email: info@advancesystems.us" is displayed
     Then Verify footer "Mon to Sat: 9.00 am to 5:00 pm" is displayed
+
+  @ASJ-16
+  Scenario: Footer social media links
+    Then Verify footer social media link "Facebook" is displayed
+    And Verify footer social media link "Twitter" is displayed
+    And Verify footer social media link "Skype" is displayed
+    And Verify footer social media link "LinkedIn" is displayed
