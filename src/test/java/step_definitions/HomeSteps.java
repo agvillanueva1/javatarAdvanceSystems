@@ -9,6 +9,8 @@ import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
+import java.util.Locale;
+
 public class HomeSteps implements CommonPage {
 
     HomePage page;
@@ -47,5 +49,14 @@ public class HomeSteps implements CommonPage {
                 String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
         )));
     }
+
+    @Then("Verify footer social media link {string} is displayed")
+    public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
+        BrowserUtils.sleep(500);
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_CLASS_CONTAINS, socialMediaFooter.toLowerCase())
+        )));
+    }
 }
+
 
