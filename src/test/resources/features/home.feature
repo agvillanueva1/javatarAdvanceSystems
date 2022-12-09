@@ -19,3 +19,12 @@ Feature: Home page tests
     Then Verify footer "Phone: +1 703-831-3217" is displayed
     Then Verify footer "Email: info@advancesystems.us" is displayed
     Then Verify footer "Mon to Sat: 9.00 am to 5:00 pm" is displayed
+
+  @ASJ-12
+  Scenario: Testimonials
+    Then Verify Testimonials header "Words from our Clients" is displayed
+    Then Verify Testimonials text is displayed
+    Then Verify Testimonials name is displayed for "John Smith"
+    Then Verify Testimonials state is displayed for "New York"
+
+

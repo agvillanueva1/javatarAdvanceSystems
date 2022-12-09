@@ -6,6 +6,7 @@ import utils.BrowserUtils;
 public class HomePage {
 
     public HomePage(){
+
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
