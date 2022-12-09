@@ -26,3 +26,12 @@ Feature: Home page tests
     And Verify footer social media link "Twitter" is displayed
     And Verify footer social media link "Skype" is displayed
     And Verify footer social media link "LinkedIn" is displayed
+
+  @ASJ-9
+  Scenario: Page navigation bar
+    Then Verify page navigation bar "Home" is displayed
+    And Verify page navigation bar "About Us" is displayed
+    And Verify page navigation bar "Services" is displayed
+    And Verify page navigation bar "Clients" is displayed
+    And Verify page navigation bar "Join Us" is displayed
+    And Verify page navigation bar "Contact Us" is displayed
