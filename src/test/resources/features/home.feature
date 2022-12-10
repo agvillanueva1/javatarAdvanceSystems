@@ -42,7 +42,7 @@ Feature: Home page tests
     Then Verify Headers "Relations" is displayed
     Then Verify Headers "Excellent Customer Service" is displayed
 
-  @ASJ-15
+  @ASJ-15 @smoke
   Scenario Outline: Links should be able to be displayed and work properly when opened
     When I click link text "<linkText>"
     Then Verify destination window has url as "<URL>"
