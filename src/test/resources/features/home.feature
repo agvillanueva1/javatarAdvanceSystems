@@ -13,6 +13,20 @@ Feature: Home page tests
     Then Verify address "Fairfax, VA, USA" is displayed
     Then Verify phone number "+1 703-831-3217" is displayed
 
+  @ASJ-14
+  Scenario: Footer contact info
+    Then Verify footer "Address: 10090 Main St, Fairfax, VA" is displayed
+    Then Verify footer "Phone: +1 703-831-3217" is displayed
+    Then Verify footer "Email: info@advancesystems.us" is displayed
+    Then Verify footer "Mon to Sat: 9.00 am to 5:00 pm" is displayed
+
+  @ASJ-16
+  Scenario: Footer social media links
+    Then Verify footer social media link "Facebook" is displayed
+    And Verify footer social media link "Twitter" is displayed
+    And Verify footer social media link "Skype" is displayed
+    And Verify footer social media link "LinkedIn" is displayed
+
   @ASJ-11
   Scenario: Verify 5 items are displayed as headers and description under it
     Then Verify Headers "Leadership Development" is displayed
@@ -21,5 +35,3 @@ Feature: Home page tests
     Then Verify Headers "Employee & Employer" is displayed
     Then Verify Headers "Relations" is displayed
     Then Verify Headers "Excellent Customer Service" is displayed
-
-
