@@ -20,6 +20,11 @@ Feature: Home page tests
     Then Verify footer "Email: info@advancesystems.us" is displayed
     Then Verify footer "Mon to Sat: 9.00 am to 5:00 pm" is displayed
 
+  @ASJ-8 @smoke
+  Scenario: Main call to action button
+    When I click action button "Join Now"
+    Then Verify button takes user to "Join Us" page
+
   @ASJ-16 @smoke
   Scenario: Footer social media links
     Then Verify footer social media link "Facebook" is displayed
@@ -39,3 +44,4 @@ Feature: Home page tests
       | Clients    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
       | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
       | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
+
