@@ -60,10 +60,8 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify button takes user to {string} page")
     public void verify_button_takes_user_to_page(String joinUs) {
-        // Verifies the Join Us tab
+        // Verifies the Join Us tab (PO Verified)
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
-        // Verifies the Join Us container (Verifying with PO)
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath("//div//h1[text()='Join Us']")));
     }
 
     @Then("Verify footer social media link {string} is displayed")
