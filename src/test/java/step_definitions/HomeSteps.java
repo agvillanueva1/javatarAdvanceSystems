@@ -3,6 +3,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.CommonPage;
@@ -47,6 +48,15 @@ public class HomeSteps implements CommonPage {
                 String.format(XPATH_TEMPLATE_TEXT, txt)
         )));
       }
+    @When("I click link text {string}")
+    public void i_click_link_text(String linkText) {
+        BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
+    }
+    @Then("Verify destination window has url as {string}")
+    public void verify_destination_window_has_url_as(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
 
 
 }

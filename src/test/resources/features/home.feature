@@ -23,3 +23,15 @@ Feature: Home page tests
     Then Verify Headers "Excellent Customer Service" is displayed
 
 
+  @ASJ-15
+  Scenario Outline: Links should be able to be displayed and work properly when opened
+    When I click link text "<linkText>"
+    Then Verify destination window has url as "<URL>"
+    Examples:
+      | linkText   | URL                                     |
+      | HOME       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
+      | ABOUT US   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
+      | SERVICES   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
+      | CLIENTS    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
+      | JOIN US    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
+      | CONTACT US | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
