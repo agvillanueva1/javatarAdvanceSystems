@@ -39,7 +39,15 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, phone)
         )));
+
     }
+    @Then("Verify Headers {string} is displayed")
+    public void verify_headers_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT, txt)
+        )));
+      }
+
 
 }
 
