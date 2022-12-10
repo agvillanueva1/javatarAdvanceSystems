@@ -28,10 +28,14 @@ Feature: Home page tests
     And Verify footer social media link "LinkedIn" is displayed
 
   @ASJ-9
-  Scenario: Page navigation bar
-    Then Verify page navigation bar "Home" is displayed
-    And Verify page navigation bar "About Us" is displayed
-    And Verify page navigation bar "Services" is displayed
-    And Verify page navigation bar "Clients" is displayed
-    And Verify page navigation bar "Join Us" is displayed
-    And Verify page navigation bar "Contact Us" is displayed
+  Scenario Outline: Page navigation bar
+    When I click navigation bar "<navBar>"
+    Then Verify page navigation bar has url "<URL>"
+    Examples:
+      | navBar     | URL                                                                 |
+      | Home       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
+      | About Us   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
+      | Services   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
+      | Clients    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
+      | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
+      | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |

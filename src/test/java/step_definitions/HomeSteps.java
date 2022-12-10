@@ -3,6 +3,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import pages.HomePage;
 import utils.BrowserUtils;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class HomeSteps implements CommonPage {
 
@@ -60,41 +62,22 @@ public class HomeSteps implements CommonPage {
         )));
     }
 
-    @Then("Verify page navigation bar {string} is displayed")
-    public void verifyPageNavigationBarIsDisplayed(String navBar) {
-        BrowserUtils.scrollDown(
+    @When("I click navigation bar {string}")
+    public void iClickNavigationBar(String navBar) {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(0, 1000)"); //Scroll vertically down by 1000 pixels
+
+        BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
         )));
-
-        // Verify buttons are in status "current"
-        WebElement element = null;
-
-        switch (navBar.toLowerCase()) {
-            case "home":
-                element = page.homeBtn;
-                break;
-            case "about us":
-                element = page.aboutUsBtn;
-                break;
-            case "services":
-                element = page.servicesBtn;
-                break;
-            case "clients":
-                element = page.clientsBtn;
-                break;
-            case "join us":
-                element = page.joinUsBtn;
-                break;
-            case "contact us":
-                element = page.contactUsBtn;
-                break;
-            default:
-                System.out.println("WebElement is not defined");
-        }
-        BrowserUtils.assertEquals(element.getText(), navBar.toUpperCase());
     }
 
+    @Then("Verify page navigation bar has url {string}")
+    public void verifyPageNavigationBarHasUrl(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
 }
 
 

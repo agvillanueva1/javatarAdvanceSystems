@@ -11,21 +11,21 @@ public class HomePage {
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
-    @FindBy(xpath = "//li[@class='current']/a[text()='Home']")
+    @FindBy(xpath = "//li/a[text()='Home']")
     public WebElement homeBtn;
 
-    @FindBy(xpath = "//*[@class='current']/*[text()='About Us']")
+    @FindBy(xpath = "//a[text()='About Us']")
     public WebElement aboutUsBtn;
 
-    @FindBy(xpath = "//*[@class='current']/*[text()='Services']")
+    @FindBy(xpath = "//a[text()='Services']")
     public WebElement servicesBtn;
 
-    @FindBy(xpath = "//*[@class='current']/*[text()='Clients']")
+    @FindBy(xpath = "//a[text()='Clients']")
     public WebElement clientsBtn;
 
-    @FindBy(xpath = "//*[@class='current']/*[text()='Join Us']")
+    @FindBy(xpath = "//a[text()='Join Us']")
     public WebElement joinUsBtn;
 
-    @FindBy(xpath = "//*[@class='current']/*[text()='Contact Us']")
+    @FindBy(xpath = "//a[text()='Contact Us']")
     public WebElement contactUsBtn;
 }

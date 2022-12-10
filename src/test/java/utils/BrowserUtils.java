@@ -183,13 +183,5 @@ public class BrowserUtils {
         select.selectByVisibleText(text);
     }
 
-    public static void scrollDown(WebElement element){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,1000)"); //Scroll vertically down by 1000 pixels
-        waitForElementClickability(element);
-        moveIntoView(element);
-        highlightElement(element);
-        element.click();
-    }
 
 }
