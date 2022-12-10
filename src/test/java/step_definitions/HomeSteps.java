@@ -1,8 +1,8 @@
 package step_definitions;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -58,28 +58,21 @@ public class HomeSteps implements CommonPage {
         )));
     }
 
-
-    @Then("Verify Testimonials header {string} is displayed")
-    public void verify_testimonials_header_is_displayed(String testimonialsHeader) {
-        String actualTxt = BrowserUtils.getDriver().findElement(By.xpath("//div/h2[text()='Words from our Clients']")).getText();
-        BrowserUtils.assertEquals(actualTxt, testimonialsHeader);
+    //----------------------------------------------------------
+    @When("I click action button {string}")
+    public void iClickActionButton(String joinNowActionBtn) {
+        BrowserUtils.click(BrowserUtils.getDriver().findElement(
+                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, joinNowActionBtn))));
     }
 
-    @Then("Verify Testimonials text is displayed")
-    public void verify_testimonials_text_is_displayed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("Verify button takes user to {string} page")
+    public void verify_button_takes_user_to_page(String joinUs) {
+        // Verifies the Join Us tab
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
+        // Verifies the Join Us container (Verifying with PO)
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath("//div//h1[text()='Join Us']")));
 
-    }
-    @Then("Verify Testimonials name is displayed for {string}")
-    public void verify_testimonials_name_is_displayed_for(String name) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("Verify Testimonials state is displayed for {string}")
-    public void verify_testimonials_state_is_displayed_for(String state) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
     }
 
 }

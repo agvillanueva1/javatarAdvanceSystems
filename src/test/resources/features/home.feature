@@ -20,11 +20,10 @@ Feature: Home page tests
     Then Verify footer "Email: info@advancesystems.us" is displayed
     Then Verify footer "Mon to Sat: 9.00 am to 5:00 pm" is displayed
 
-  @ASJ-12
-  Scenario: Testimonials
-    Then Verify Testimonials header "Words from our Clients" is displayed
-    Then Verify Testimonials text is displayed
-    Then Verify Testimonials name is displayed for "John Smith"
-    Then Verify Testimonials state is displayed for "New York"
+  @ASJ-8
+  Scenario: Main call to action button
+    When I click action button "Join Now"
+    Then Verify button takes user to "Join Us" page
+
 
 
