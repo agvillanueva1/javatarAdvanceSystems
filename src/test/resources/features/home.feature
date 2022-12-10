@@ -35,8 +35,6 @@ Feature: Home page tests
     Then Verify Headers "Employee & Employer" is displayed
     Then Verify Headers "Relations" is displayed
     Then Verify Headers "Excellent Customer Service" is displayed
-<<<<<<< HEAD
-
 
   @ASJ-15
   Scenario Outline: Links should be able to be displayed and work properly when opened
@@ -50,5 +48,3 @@ Feature: Home page tests
       | CLIENTS    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
       | JOIN US    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
       | CONTACT US | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
-=======
->>>>>>> 9dab72d51ea2c699dc7fa7ae4b422182ad4d28ad
