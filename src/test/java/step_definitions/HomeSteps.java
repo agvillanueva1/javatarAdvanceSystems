@@ -3,18 +3,11 @@ package step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.JavascriptExecutor;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
-
-import java.util.concurrent.TimeUnit;
 
 public class HomeSteps implements CommonPage {
 
@@ -71,9 +64,32 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
         // Verifies the Join Us container (Verifying with PO)
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath("//div//h1[text()='Join Us']")));
-
-
     }
 
+    @Then("Verify footer social media link {string} is displayed")
+    public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
+        BrowserUtils.sleep(500);
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_CLASS_CONTAINS, socialMediaFooter.toLowerCase())
+        )));
+    }
+
+    @When("I click navigation bar {string}")
+    public void iClickNavigationBar(String navBar) {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(0, 1000)"); //Scroll vertically down by 1000 pixels
+
+        BrowserUtils.click(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
+        )));
+    }
+
+    @Then("Verify page navigation bar has url {string}")
+    public void verifyPageNavigationBarHasUrl(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
 }
+
 
