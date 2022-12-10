@@ -9,5 +9,5 @@ public interface CommonPage {
     String XPATH_TEMPLATE_INPUT_INFO = "//input[@name='%s']";
     String XPATH_TEMPLATE_CLASS_CONTAINS = "//span[contains(@class, '%s')]";
     String XPATH_TEMPLATE_TEXT2_CONTAINS = "(//a[contains(text(), '%s')])[2]";
-
+    String XPATH_TEMPLATE_TEXT3_CONTAINS = "(//*[contains(@class, '%s')])[1]";
 }
