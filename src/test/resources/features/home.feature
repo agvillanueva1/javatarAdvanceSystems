@@ -35,13 +35,12 @@ Feature: Home page tests
   @ASJ-9 @smoke
   Scenario Outline: Page navigation bar
     When I click navigation bar "<navBar>"
-    Then Verify page navigation bar has url "<URL>"
+    Then Verify page navigation bar has url "<titleText>"
     Examples:
-      | navBar     | URL                                                                 |
-      | Home       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
-      | About Us   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
-      | Services   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
-      | Clients    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
-      | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
-      | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
-
+      | navBar     | titleText                    |
+      | Home       | Advance Systems - Home       |
+      | About Us   | Advance Systems - About Us   |
+      | Services   | Advance Systems - Services   |
+      | Clients    | Advance Systems - Clients    |
+      | Join Us    | Advance Systems - Join Us    |
+      | Contact Us | Advance Systems - Contact Us |
