@@ -18,6 +18,5 @@ import org.junit.runner.RunWith;
         dryRun = false
         //,tags = "@ASJ-10"
 )
-
 public class CukesRunner {
 }

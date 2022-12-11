@@ -44,7 +44,25 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, phone)
         )));
+
     }
+    @Then("Verify Headers {string} is displayed")
+    public void verify_headers_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT, txt)
+        )));
+      }
+    @When("I click link text {string}")
+    public void i_click_link_text(String linkText) {
+        BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
+    }
+
+    @Then("Verify destination window has url as {string}")
+    public void verify_destination_window_has_url_as(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
+
 
     @Then("Verify footer {string} is displayed")
     public void verifyFooterIsDisplayed(String footer) {
