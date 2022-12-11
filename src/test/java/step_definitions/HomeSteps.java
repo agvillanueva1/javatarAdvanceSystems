@@ -49,7 +49,7 @@ public class HomeSteps implements CommonPage {
     @Then("Verify Headers {string} is displayed")
     public void verify_headers_is_displayed(String txt) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-                String.format(XPATH_TEMPLATE_TEXT, txt)
+                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
         )));
       }
     @When("I click link text {string}")
