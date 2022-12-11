@@ -67,4 +67,15 @@ Feature: Home page tests
       | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
       | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
 
+  @ASJ-10
+  Scenario Outline: Main social media section
+    When I click on social media button "<socialMediaPlatform>"
+    Then Verify each button takes user to corresponding page with "<Title>"
+    Examples:
+      | socialMediaPlatform | Title    |
+      | Facebook            | Facebook |
+      | Twitter             | Twitter  |
+      | Google              | Google   |
+      | LinkedIn            | LinkedIn |
+
 
