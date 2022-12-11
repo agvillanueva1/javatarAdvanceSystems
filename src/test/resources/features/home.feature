@@ -57,3 +57,6 @@ Feature: Home page tests
       | LinkedIn            | LinkedIn |
 
 
+  @ASJ-13 @smoke
+  Scenario: List of companies
+    Then Verify that companies name displayed in one row

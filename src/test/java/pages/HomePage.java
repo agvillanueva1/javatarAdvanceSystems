@@ -9,9 +9,10 @@ import javax.xml.xpath.XPath;
 
 public class HomePage {
 
-    public HomePage(){
+    public HomePage() {
 
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
-
+    @FindBy(xpath = "//*[contains(@class, 'six-item-carousel')]")
+    public WebElement companiesName;
 }

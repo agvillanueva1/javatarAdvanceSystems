@@ -115,4 +115,22 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
     }
+
+    @Then("Verify navigation bar button {string} is displayed")
+    public void verifyNavigationBarButtonIsDisplayed(String navButton) {
+     BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
+            By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
+            );
 }
+
+
+    @Then("Verify that companies name displayed in one row")
+    public void verifyThatCompaniesNameDisplayedInOneRow() {
+        BrowserUtils.isDisplayed(page.companiesName);
+    }
+}
+
+
+
+
+
