@@ -51,6 +51,7 @@ public class HomeSteps implements CommonPage {
     public void i_click_link_text(String linkText) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
     }
+
     @Then("Verify destination window has url as {string}")
     public void verify_destination_window_has_url_as(String URL) {
         BrowserUtils.switchToNewWindow();
