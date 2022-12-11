@@ -5,10 +5,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
-
 
 public class HomeSteps implements CommonPage {
 
@@ -22,6 +22,7 @@ public class HomeSteps implements CommonPage {
     public void i_open_url_of_homepage() {
         BrowserUtils.getDriver();
     }
+
     @Then("Verify title text is {string}")
     public void verify_title_text_is(String titleText) {
         String actualTitleText = BrowserUtils.getDriver().getTitle();
@@ -40,7 +41,25 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, phone)
         )));
+
     }
+    @Then("Verify Headers {string} is displayed")
+    public void verify_headers_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
+        )));
+      }
+    @When("I click link text {string}")
+    public void i_click_link_text(String linkText) {
+        BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
+    }
+
+    @Then("Verify destination window has url as {string}")
+    public void verify_destination_window_has_url_as(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
+
 
     @Then("Verify footer {string} is displayed")
     public void verifyFooterIsDisplayed(String footer) {
@@ -48,7 +67,7 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.moveIntoView(BrowserUtils.getDriver().findElement(By.xpath("//div[@class='footer-copyright']")));
         //Verification code
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-               String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
+                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
         )));
     }
 
@@ -60,11 +79,11 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify button takes user to {string} page")
     public void verify_button_takes_user_to_page(String joinUs) {
-        // Verifies the Join Us tab
+        // Verifies the Join Us tab (PO Verified)
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
-        // Verifies the Join Us container (Verifying with PO)
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath("//div//h1[text()='Join Us']")));
     }
+
+    //----------------------------------------------------------
 
     @Then("Verify footer social media link {string} is displayed")
     public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
@@ -82,7 +101,7 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
-        )));
+                        )));
     }
 
     @Then("Verify page navigation bar has url {string}")
@@ -91,6 +110,22 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), titleText);
     }
 
+    @When("I click on social media button {string}")
+    public void iClickOnSocialMediaButton(String socialMediaBtn) {
+        BrowserUtils.click(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_TEXT3_CONTAINS, socialMediaBtn.toLowerCase()))
+                )
+        );
+        BrowserUtils.sleep(1000);
+
+    }
+
+    @Then("Verify each button takes user to corresponding page with {string}")
+    public void verifyEachButtonTakesUserToCorrespondingPageWith(String pageTitle) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
+        BrowserUtils.getDriver().navigate().back();
+    }
+
 }
-
-
