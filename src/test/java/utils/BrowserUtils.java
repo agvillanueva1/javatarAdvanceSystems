@@ -26,7 +26,8 @@ public class BrowserUtils {
     private static WebDriver driver;
 
     public static WebDriver getDriver(){
-        initializeDriver("chrome");
+        if (driver == null)
+            initializeDriver("chrome");
         return driver;
     }
 
@@ -129,6 +130,13 @@ public class BrowserUtils {
         element.click();
     }
 
+    public static void click2(WebElement element){
+        //TODO: apply report -> logInfo("clicked the button ", element);
+        waitForElementClickability(element);
+        highlightElement(element);
+        element.click();
+    }
+
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);
@@ -148,6 +156,11 @@ public class BrowserUtils {
     public static void isDisplayed(WebElement element){
         waitForElementVisibility(element);
         moveIntoView(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+    public static void isDisplayed2(WebElement element){
+        waitForElementVisibility(element);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
