@@ -13,6 +13,10 @@ public class HomePage {
 
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
+
     @FindBy(xpath = "//*[contains(@class, 'six-item-carousel')]")
     public WebElement companiesName;
+
+    @FindBy(id = "dropdownMenu1")
+    public WebElement languageButton;
 }
