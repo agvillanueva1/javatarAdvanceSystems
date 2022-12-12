@@ -14,4 +14,13 @@ public class HomePage {
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
+    @FindBy(xpath = "//div/h2[text()='Words from our Clients']")
+    public WebElement headerTestimonials;
+
+    @FindBy(xpath = "(//div//div[@class='owl-item active']//div/div)[1]")
+    public WebElement descriptionTestimonials;
+
+    @FindBy(xpath = "//div//div[@class='owl-item active']//div//following-sibling::h3")
+    public WebElement clientNameTestimonials;
+
 }

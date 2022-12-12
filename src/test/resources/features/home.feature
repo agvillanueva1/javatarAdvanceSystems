@@ -57,3 +57,9 @@ Feature: Home page tests
       | LinkedIn            | LinkedIn |
 
 
+  @ASJ-12
+  Scenario: Testimonials
+    Then Verify header "Words from our Clients" is displayed
+    Then Verify description is displayed
+    Then Verify client name is displayed
+    Then Verify state is displayed

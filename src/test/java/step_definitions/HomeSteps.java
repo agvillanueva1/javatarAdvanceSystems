@@ -1,17 +1,22 @@
 package step_definitions;
 
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class HomeSteps implements CommonPage {
 
@@ -114,5 +119,34 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.switchToNewWindow();
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
+    }
+
+    //----------------------------------------------------------
+
+    @Then("Verify header {string} is displayed")
+    public void verifyHeaderIsDisplayed(String sectionHeaderTestimonials) {
+        String actualTxt = page.headerTestimonials.getText();
+        BrowserUtils.assertEquals(actualTxt, sectionHeaderTestimonials);
+    }
+
+    @Then("Verify description is displayed")
+    public void verifyDescriptionIsDisplayed() {
+        BrowserUtils.isDisplayed(page.descriptionTestimonials);
+    }
+
+    @Then("Verify client name is displayed")
+    public void verifyClientNameIsDisplayed() {
+        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("//div//div[@class='owl-item active']//div//following-sibling::h3"));
+        for (WebElement each : data){
+            BrowserUtils.isDisplayed(each);
+        }
+    }
+
+    @Then("Verify state is displayed")
+    public void verifyStateIsDisplayed() {
+        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("(//div//div[@class='owl-item active']//div//following-sibling::div)[4]"));
+        for (WebElement each : data) {
+            BrowserUtils.isDisplayed(each);
+        }
     }
 }
