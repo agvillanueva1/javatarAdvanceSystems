@@ -10,9 +10,6 @@ import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
-import java.util.List;
-import java.util.Set;
-
 public class HomeSteps implements CommonPage {
 
     HomePage page;
@@ -74,7 +71,6 @@ public class HomeSteps implements CommonPage {
         )));
     }
 
-    //----------------------------------------------------------
     @When("I click action button {string}")
     public void iClickActionButton(String joinNowActionBtn) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(
@@ -109,12 +105,10 @@ public class HomeSteps implements CommonPage {
     }
 
     @Then("Verify page navigation bar has url {string}")
-    public void verifyPageNavigationBarHasUrl(String URL) {
+    public void verifyPageNavigationBarHasUrl(String titleText) {
         BrowserUtils.switchToNewWindow();
-        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), titleText);
     }
-
-    //----------------------------------------------------------
 
     @When("I click on social media button {string}")
     public void iClickOnSocialMediaButton(String socialMediaBtn) {
@@ -133,4 +127,5 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
     }
+
 }
