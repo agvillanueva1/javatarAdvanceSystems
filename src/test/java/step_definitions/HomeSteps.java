@@ -10,9 +10,6 @@ import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
-import java.util.List;
-import java.util.Set;
-
 public class HomeSteps implements CommonPage {
 
     HomePage page;
@@ -44,7 +41,25 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, phone)
         )));
+
     }
+    @Then("Verify Headers {string} is displayed")
+    public void verify_headers_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
+        )));
+      }
+    @When("I click link text {string}")
+    public void i_click_link_text(String linkText) {
+        BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
+    }
+
+    @Then("Verify destination window has url as {string}")
+    public void verify_destination_window_has_url_as(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+    }
+
 
     @Then("Verify footer {string} is displayed")
     public void verifyFooterIsDisplayed(String footer) {
@@ -56,7 +71,6 @@ public class HomeSteps implements CommonPage {
         )));
     }
 
-    //----------------------------------------------------------
     @When("I click action button {string}")
     public void iClickActionButton(String joinNowActionBtn) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(
@@ -91,12 +105,10 @@ public class HomeSteps implements CommonPage {
     }
 
     @Then("Verify page navigation bar has url {string}")
-    public void verifyPageNavigationBarHasUrl(String URL) {
+    public void verifyPageNavigationBarHasUrl(String titleText) {
         BrowserUtils.switchToNewWindow();
-        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), titleText);
     }
-
-    //----------------------------------------------------------
 
     @When("I click on social media button {string}")
     public void iClickOnSocialMediaButton(String socialMediaBtn) {
@@ -116,6 +128,7 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.getDriver().navigate().back();
     }
 
+
     @Then("Verify that companies name displayed in one row")
     public void verifyThatCompaniesNameDisplayedInOneRow() {
         BrowserUtils.isDisplayed(page.companiesName);
@@ -126,6 +139,7 @@ public class HomeSteps implements CommonPage {
      BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
             By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
             );
+
 }
     @When("I click a language selection button")
     public void iClickALanguageSelectionButton() {

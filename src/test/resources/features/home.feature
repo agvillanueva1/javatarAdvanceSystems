@@ -32,18 +32,40 @@ Feature: Home page tests
     And Verify footer social media link "Skype" is displayed
     And Verify footer social media link "LinkedIn" is displayed
 
+
+  @ASJ-11
+  Scenario: Verify 5 items are displayed as headers and description under it
+    Then Verify Headers "Leadership Development" is displayed
+    Then Verify Headers "Capability Building" is displayed
+    Then Verify Headers "Rewards & Benefits" is displayed
+    Then Verify Headers "Employee & Employer" is displayed
+    Then Verify Headers "Excellent Customer Service" is displayed
+
+  @ASJ-15 @smoke
+  Scenario Outline: Links should be able to be displayed and work properly when opened
+    When I click link text "<linkText>"
+    Then Verify destination window has url as "<URL>"
+    Examples:
+      | linkText    | URL                                                                 |
+      | HOME        | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
+      | ABOUT US    | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
+      | SERVICES    | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
+      | CLIENTS     | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
+      | JOIN US     | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
+      | CONTACT US  | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
+
   @ASJ-9 @smoke
   Scenario Outline: Page navigation bar
     When I click navigation bar "<navBar>"
-    Then Verify page navigation bar has url "<URL>"
+    Then Verify page navigation bar has url "<titleText>"
     Examples:
-      | navBar     | URL                                                                 |
-      | Home       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
-      | About Us   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
-      | Services   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
-      | Clients    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
-      | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
-      | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
+      | navBar     | titleText                    |
+      | Home       | Advance Systems - Home       |
+      | About Us   | Advance Systems - About Us   |
+      | Services   | Advance Systems - Services   |
+      | Clients    | Advance Systems - Clients    |
+      | Join Us    | Advance Systems - Join Us    |
+      | Contact Us | Advance Systems - Contact Us |
 
   @ASJ-10
   Scenario Outline: Main social media section
@@ -55,7 +77,6 @@ Feature: Home page tests
       | Twitter             | Twitter  |
       | Google              | Google   |
       | LinkedIn            | LinkedIn |
-
 
   @ASJ-13 @smoke @regression
   Scenario: List of companies
@@ -70,4 +91,5 @@ Feature: Home page tests
     Then Verify navigation bar button "English" is displayed
     Then Verify navigation bar button "Spanish" is displayed
     Then Verify navigation bar button "French" is displayed
+
 
