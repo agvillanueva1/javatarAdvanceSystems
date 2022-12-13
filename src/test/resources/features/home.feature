@@ -46,13 +46,14 @@ Feature: Home page tests
     And Verify footer social media link "LinkedIn" is displayed
 
 
-  @ASJ-11
+  @ASJ-11 @smoke
   Scenario: Verify 5 items are displayed as headers and description under it
     Then Verify Headers "Leadership Development" is displayed
     Then Verify Headers "Capability Building" is displayed
     Then Verify Headers "Rewards & Benefits" is displayed
-    Then Verify Headers "Employee & Employer" is displayed
+    Then Verify Headers "Employee & Employer Relations" is displayed
     Then Verify Headers "Excellent Customer Service" is displayed
+    Then Verify description "Lorem Ipsum is simply dummy text of the printing and typesetting industry." is displayed
 
   @ASJ-15 @smoke
   Scenario Outline: Links should be able to be displayed and work properly when opened
