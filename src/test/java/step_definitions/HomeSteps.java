@@ -88,16 +88,14 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify Headers {string} is displayed")
     public void verify_headers_is_displayed(String txt) {
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
-        )));
+        BrowserUtils.isDisplayed(page.sectionItems);
 
       }
     @Then("Verify description {string} is displayed")
-    public void verify_description_is_displayed(String txt) {
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
-        )));
+    public void verify_description_is_displayed( String txt) {
+        BrowserUtils.sleep(500);
+       BrowserUtils.isDisplayed(page.headerDescription);
+
     }
 
     @When("I click link text {string}")
