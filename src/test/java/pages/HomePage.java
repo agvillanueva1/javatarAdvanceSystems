@@ -5,11 +5,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
+import javax.xml.xpath.XPath;
+
 public class HomePage {
 
-    public HomePage(){
+    public HomePage() {
+
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
+
 
     @FindBy(xpath = "(//div[@class='tp-mask-wrap'])[1]")
     public WebElement parallaxHeader;
@@ -31,5 +35,11 @@ public class HomePage {
 
     @FindBy (xpath = "//*[text()='Home']")
     public WebElement homeBtn;
+
+    @FindBy(xpath = "//*[contains(@class, 'six-item-carousel')]")
+    public WebElement companiesName;
+
+    @FindBy(id = "dropdownMenu1")
+    public WebElement languageButton;
 
 }
