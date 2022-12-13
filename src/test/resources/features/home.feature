@@ -7,6 +7,19 @@ Feature: Home page tests
   Scenario: Test title of the home page
     Then Verify title text is "Advance Systems - Home"
 
+  @ASJ-4
+  Scenario: Verify Parallax section
+    Then Verify header is displayed
+    Then Verify description is displayed
+    Then Verify a ReadMore button on first parallax is displayed
+    When I click a button "Read More"
+    Then Verify destination window has url as "https://tla-batch-6.github.io/advance-systems-test-b6/services.html"
+    Then Verify second header is displayed
+    Then Verify second description is displayed
+    Then Verify a ReadMore button on second parallax is displayed
+    And I click a button "Read More2"
+    Then Verify destination window has url as "https://tla-batch-6.github.io/advance-systems-test-b6/services.html"
+
   @ASJ-3 @smoke
   Scenario: Contact info on main page
     Then Verify address "10090 Main Street" is displayed
@@ -78,9 +91,11 @@ Feature: Home page tests
       | Google              | Google   |
       | LinkedIn            | LinkedIn |
 
+
   @ASJ-13 @smoke @regression
   Scenario: List of companies
     Then Verify that companies name displayed in one row
+    
 
   @ASJ-7 @smoke @regression
   Scenario: General navigation bar
@@ -91,5 +106,6 @@ Feature: Home page tests
     Then Verify navigation bar button "English" is displayed
     Then Verify navigation bar button "Spanish" is displayed
     Then Verify navigation bar button "French" is displayed
+
 
 

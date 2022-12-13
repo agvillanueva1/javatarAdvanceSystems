@@ -24,6 +24,7 @@ public class BrowserUtils {
     public static WebDriver getDriver(){
         if (driver == null)
         initializeDriver("chrome");
+
         return driver;
     }
 
@@ -152,6 +153,11 @@ public class BrowserUtils {
     public static void isDisplayed(WebElement element){
         waitForElementVisibility(element);
         moveIntoView(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+    public static void isDisplayed2(WebElement element){
+        waitForElementVisibility(element);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
