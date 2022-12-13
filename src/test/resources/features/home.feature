@@ -7,6 +7,19 @@ Feature: Home page tests
   Scenario: Test title of the home page
     Then Verify title text is "Advance Systems - Home"
 
+  @ASJ-4
+  Scenario: Verify Parallax section
+    Then Verify header is displayed
+    Then Verify description is displayed
+    Then Verify a ReadMore button on first parallax is displayed
+    When I click a button "Read More"
+    Then Verify destination window has url as "https://tla-batch-6.github.io/advance-systems-test-b6/services.html"
+    Then Verify second header is displayed
+    Then Verify second description is displayed
+    Then Verify a ReadMore button on second parallax is displayed
+    And I click a button "Read More2"
+    Then Verify destination window has url as "https://tla-batch-6.github.io/advance-systems-test-b6/services.html"
+
   @ASJ-3 @smoke
   Scenario: Contact info on main page
     Then Verify address "10090 Main Street" is displayed
@@ -58,15 +71,15 @@ Feature: Home page tests
   @ASJ-9 @smoke
   Scenario Outline: Page navigation bar
     When I click navigation bar "<navBar>"
-    Then Verify page navigation bar has url "<URL>"
+    Then Verify page navigation bar has url "<titleText>"
     Examples:
-      | navBar     | URL                                                                 |
-      | Home       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
-      | About Us   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
-      | Services   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
-      | Clients    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
-      | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
-      | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
+      | navBar     | titleText                    |
+      | Home       | Advance Systems - Home       |
+      | About Us   | Advance Systems - About Us   |
+      | Services   | Advance Systems - Services   |
+      | Clients    | Advance Systems - Clients    |
+      | Join Us    | Advance Systems - Join Us    |
+      | Contact Us | Advance Systems - Contact Us |
 
   @ASJ-10
   Scenario Outline: Main social media section
@@ -79,4 +92,24 @@ Feature: Home page tests
       | Google              | Google   |
       | LinkedIn            | LinkedIn |
 
+  @ASJ-12
+  Scenario: Testimonials
+    Then Verify header "Words from our Clients" is displayed
+    Then Verify text description is displayed
+    Then Verify client name is displayed
+    Then Verify state is displayed
 
+  @ASJ-13 @smoke @regression
+  Scenario: List of companies
+    Then Verify that companies name displayed in one row
+    
+
+  @ASJ-7 @smoke @regression
+  Scenario: General navigation bar
+    Then Verify navigation bar button "Get Support" is displayed
+    Then Verify navigation bar button "Job Career" is displayed
+    Then Verify navigation bar button "Feedback" is displayed
+    When I click a language selection button
+    Then Verify navigation bar button "English" is displayed
+    Then Verify navigation bar button "Spanish" is displayed
+    Then Verify navigation bar button "French" is displayed

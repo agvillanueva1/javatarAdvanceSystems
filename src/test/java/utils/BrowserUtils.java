@@ -7,14 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserUtils {
@@ -28,6 +24,7 @@ public class BrowserUtils {
     public static WebDriver getDriver(){
         if (driver == null)
         initializeDriver("chrome");
+
         return driver;
     }
 
@@ -130,6 +127,13 @@ public class BrowserUtils {
         element.click();
     }
 
+    public static void click2(WebElement element){
+        //TODO: apply report -> logInfo("clicked the button ", element);
+        waitForElementClickability(element);
+        highlightElement(element);
+        element.click();
+    }
+
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);
@@ -149,6 +153,11 @@ public class BrowserUtils {
     public static void isDisplayed(WebElement element){
         waitForElementVisibility(element);
         moveIntoView(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+    public static void isDisplayed2(WebElement element){
+        waitForElementVisibility(element);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
@@ -182,6 +191,5 @@ public class BrowserUtils {
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
-
 
 }
