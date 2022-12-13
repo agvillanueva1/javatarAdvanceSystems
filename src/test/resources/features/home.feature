@@ -40,6 +40,7 @@ Feature: Home page tests
     Then Verify Headers "Rewards & Benefits" is displayed
     Then Verify Headers "Employee & Employer" is displayed
     Then Verify Headers "Excellent Customer Service" is displayed
+    Then Verify description "Lorem Ipsum is simply dummy text of the printing and typesetting industry." is displayed
 
   @ASJ-15 @smoke
   Scenario Outline: Links should be able to be displayed and work properly when opened

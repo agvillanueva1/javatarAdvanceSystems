@@ -52,6 +52,12 @@ public class HomeSteps implements CommonPage {
                 String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
         )));
       }
+    @Then("Verify description {string} is displayed")
+    public void verify_description_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
+        )));
+    }
     @When("I click link text {string}")
     public void i_click_link_text(String linkText) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
@@ -133,4 +139,5 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
     }
+
 }
