@@ -1,6 +1,5 @@
 package step_definitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,9 +7,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
+
+import java.util.List;
 
 public class HomeSteps implements CommonPage {
 
@@ -43,12 +47,12 @@ public class HomeSteps implements CommonPage {
         System.out.println(page.parallaxHeader.getText());
         BrowserUtils.isDisplayed2(page.parallaxHeader);
     }
-    
+
     @Then("Verify description is displayed")
     public void verify_description_is_displayed() {
         BrowserUtils.isDisplayed2(page.parallaxBody);
     }
-    
+
     @Then("Verify a ReadMore button on first parallax is displayed")
     public void verify_a_read_more_button_on_first_parallax_is_displayed() {
         BrowserUtils.isDisplayed2(page.readMoreBtn1);
@@ -72,6 +76,7 @@ public class HomeSteps implements CommonPage {
                 BrowserUtils.click2(BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_BUTTON, button))));
         }
+    }
 
     @Then("Verify phone number {string} is displayed")
     public void verifyPhoneNumberIsDisplayed(String phone) {
@@ -80,14 +85,14 @@ public class HomeSteps implements CommonPage {
         )));
 
     }
-    
+
     @Then("Verify Headers {string} is displayed")
     public void verify_headers_is_displayed(String txt) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)
         )));
-      }
-      
+    }
+
     @When("I click link text {string}")
     public void i_click_link_text(String linkText) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
@@ -106,7 +111,7 @@ public class HomeSteps implements CommonPage {
     public void verify_second_header_is_displayed() {
         BrowserUtils.isDisplayed2(page.parallaxHeader2);
     }
-    
+
     @Then("Verify second description is displayed")
     public void verify_second_description_is_displayed() {
         BrowserUtils.isDisplayed2(page.parallaxBody2);
@@ -177,6 +182,7 @@ public class HomeSteps implements CommonPage {
         );
         BrowserUtils.sleep(1000);
 
+
     }
 
     @Then("Verify each button takes user to corresponding page with {string}")
@@ -184,6 +190,35 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.switchToNewWindow();
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
+    }
+
+    //----------------------------------------------------------
+
+    @Then("Verify header {string} is displayed")
+    public void verifyHeaderIsDisplayed(String sectionHeaderTestimonials) {
+        String actualTxt = page.headerTestimonials.getText();
+        BrowserUtils.assertEquals(actualTxt, sectionHeaderTestimonials);
+    }
+
+    @Then("Verify text description is displayed")
+    public void verifyTextDescriptionIsDisplayed() {
+        BrowserUtils.isDisplayed(page.descriptionTestimonials);
+    }
+
+    @Then("Verify client name is displayed")
+    public void verifyClientNameIsDisplayed() {
+        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("//div//div[@class='owl-item active']//div//following-sibling::h3"));
+        for (WebElement each : data) {
+            BrowserUtils.isDisplayed(each);
+        }
+    }
+
+    @Then("Verify state is displayed")
+    public void verifyStateIsDisplayed() {
+        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("(//div//div[@class='owl-item active']//div//following-sibling::div)[4]"));
+        for (WebElement each : data) {
+            BrowserUtils.isDisplayed(each);
+        }
     }
 
 
@@ -194,11 +229,12 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify navigation bar button {string} is displayed")
     public void verifyNavigationBarButtonIsDisplayed(String navButton) {
-     BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
-            By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
-            );
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
+                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
+        );
 
-}
+    }
+
     @When("I click a language selection button")
     public void iClickALanguageSelectionButton() {
         BrowserUtils.click(page.languageButton);
@@ -206,6 +242,3 @@ public class HomeSteps implements CommonPage {
 
 
 }
-
-
-
