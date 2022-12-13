@@ -93,7 +93,6 @@ public class HomeSteps implements CommonPage {
       }
     @Then("Verify description {string} is displayed")
     public void verify_description_is_displayed( String txt) {
-        BrowserUtils.sleep(500);
        BrowserUtils.isDisplayed(page.headerDescription);
 
     }
