@@ -78,3 +78,18 @@ Feature: Home page tests
       | Google              | Google   |
       | LinkedIn            | LinkedIn |
 
+  @ASJ-13 @smoke @regression
+  Scenario: List of companies
+    Then Verify that companies name displayed in one row
+
+  @ASJ-7 @smoke @regression
+  Scenario: General navigation bar
+    Then Verify navigation bar button "Get Support" is displayed
+    Then Verify navigation bar button "Job Career" is displayed
+    Then Verify navigation bar button "Feedback" is displayed
+    When I click a language selection button
+    Then Verify navigation bar button "English" is displayed
+    Then Verify navigation bar button "Spanish" is displayed
+    Then Verify navigation bar button "French" is displayed
+
+
