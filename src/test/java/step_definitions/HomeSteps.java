@@ -90,10 +90,11 @@ public class HomeSteps implements CommonPage {
     public void verify_headers_is_displayed(String txt) {
         BrowserUtils.isDisplayed(page.sectionItems);
 
-      }
+    }
+
     @Then("Verify description {string} is displayed")
-    public void verify_description_is_displayed( String txt) {
-       BrowserUtils.isDisplayed(page.headerDescription);
+    public void verify_description_is_displayed(String txt) {
+        BrowserUtils.isDisplayed(page.headerDescription);
 
     }
 
@@ -246,5 +247,12 @@ public class HomeSteps implements CommonPage {
     }
 
 
+    @Then("Verify {string} is displayed")
+    public void verify_is_displayed(String txt) {
+       BrowserUtils.isDisplayed(page.testimonialName);
+
+
+    }
 }
+
 
