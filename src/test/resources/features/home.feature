@@ -113,3 +113,11 @@ Feature: Home page tests
     Then Verify navigation bar button "English" is displayed
     Then Verify navigation bar button "Spanish" is displayed
     Then Verify navigation bar button "French" is displayed
+
+
+  @ASJ-012
+  Scenario: Testimonials
+    Then Verify header "Words from our Clients" is displayed
+    Then Verify "message" is displayed
+    Then Verify "name" is displayed
+    Then Verify "state" is displayed
