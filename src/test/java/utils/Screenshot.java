@@ -8,9 +8,10 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.concurrent.TimeUnit;
 
 public class Screenshot {
-    public static String takeScreenshot(WebDriver driver){
+    public static String takeScreenshot(WebDriver driver) {
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         byte[] fileContent = new byte[0];
 

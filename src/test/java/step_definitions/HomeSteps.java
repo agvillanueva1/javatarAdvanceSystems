@@ -1,5 +1,8 @@
 package step_definitions;
 
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.DataTableType;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,8 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
+import utils.Screenshot;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class HomeSteps implements CommonPage {
 
@@ -136,21 +142,23 @@ public class HomeSteps implements CommonPage {
 
     @When("I click action button {string}")
     public void iClickActionButton(String joinNowActionBtn) {
+        BrowserUtils.sleep(1000);
         BrowserUtils.click(BrowserUtils.getDriver().findElement(
                 By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, joinNowActionBtn))));
+
     }
 
     @Then("Verify button takes user to {string} page")
     public void verify_button_takes_user_to_page(String joinUs) {
-        // Verifies the Join Us tab (PO Verified)
+        BrowserUtils.sleep(1000);
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
+
     }
 
     //----------------------------------------------------------
 
     @Then("Verify footer social media link {string} is displayed")
     public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
-        BrowserUtils.sleep(500);
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_CLASS_CONTAINS, socialMediaFooter.toLowerCase())
         )));
@@ -192,36 +200,6 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.getDriver().navigate().back();
     }
 
-    //----------------------------------------------------------
-
-    @Then("Verify header {string} is displayed")
-    public void verifyHeaderIsDisplayed(String sectionHeaderTestimonials) {
-        String actualTxt = page.headerTestimonials.getText();
-        BrowserUtils.assertEquals(actualTxt, sectionHeaderTestimonials);
-    }
-
-    @Then("Verify text description is displayed")
-    public void verifyTextDescriptionIsDisplayed() {
-        BrowserUtils.isDisplayed(page.descriptionTestimonials);
-    }
-
-    @Then("Verify client name is displayed")
-    public void verifyClientNameIsDisplayed() {
-        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("//div//div[@class='owl-item active']//div//following-sibling::h3"));
-        for (WebElement each : data) {
-            BrowserUtils.isDisplayed(each);
-        }
-    }
-
-    @Then("Verify state is displayed")
-    public void verifyStateIsDisplayed() {
-        List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("(//div//div[@class='owl-item active']//div//following-sibling::div)[4]"));
-        for (WebElement each : data) {
-            BrowserUtils.isDisplayed(each);
-        }
-    }
-
-
     @Then("Verify that companies name displayed in one row")
     public void verifyThatCompaniesNameDisplayedInOneRow() {
         BrowserUtils.isDisplayed(page.companiesName);
@@ -239,6 +217,7 @@ public class HomeSteps implements CommonPage {
     public void iClickALanguageSelectionButton() {
         BrowserUtils.click(page.languageButton);
     }
-
-
 }
+
+
+
