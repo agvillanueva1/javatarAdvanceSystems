@@ -46,18 +46,18 @@ Feature: Home page tests
     When I click link text "<linkText>"
     Then Verify destination window has url as "<URL>"
     Examples:
-      | linkText    | URL                                                                 |
-      | HOME        | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
-      | ABOUT US    | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
-      | SERVICES    | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
-      | CLIENTS     | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
-      | JOIN US     | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
-      | CONTACT US  | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
+      | linkText   | URL                                                                 |
+      | HOME       | https://tla-batch-6.github.io/advance-systems-test-b6/index.html    |
+      | ABOUT US   | https://tla-batch-6.github.io/advance-systems-test-b6/about.html    |
+      | SERVICES   | https://tla-batch-6.github.io/advance-systems-test-b6/services.html |
+      | CLIENTS    | https://tla-batch-6.github.io/advance-systems-test-b6/clients.html  |
+      | JOIN US    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
+      | CONTACT US | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
 
   @ASJ-9 @smoke
   Scenario Outline: Page navigation bar
     When I click navigation bar "<navBar>"
-    Then Verify page navigation bar has url "<titleText>"
+    Then Verify page navigation bar has correct title "<titleText>"
     Examples:
       | navBar     | titleText                    |
       | Home       | Advance Systems - Home       |
@@ -77,4 +77,6 @@ Feature: Home page tests
       | Twitter             | Twitter  |
       | Google              | Google   |
       | LinkedIn            | LinkedIn |
+
+
 

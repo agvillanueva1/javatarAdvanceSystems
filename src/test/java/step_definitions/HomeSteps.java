@@ -25,6 +25,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify title text is {string}")
     public void verify_title_text_is(String titleText) {
+        BrowserUtils.sleep(2000);
         String actualTitleText = BrowserUtils.getDriver().getTitle();
         BrowserUtils.assertEquals(titleText, actualTitleText);
     }
@@ -98,14 +99,17 @@ public class HomeSteps implements CommonPage {
         JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
         js.executeScript("window.scrollBy(0, 1000)"); //Scroll vertically down by 1000 pixels
 
+        BrowserUtils.sleep(3000);
+
         BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
                         )));
     }
 
-    @Then("Verify page navigation bar has url {string}")
+    @Then("Verify page navigation bar has correct title {string}")
     public void verifyPageNavigationBarHasUrl(String titleText) {
+        BrowserUtils.sleep(1000);
         BrowserUtils.switchToNewWindow();
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), titleText);
     }
