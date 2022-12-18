@@ -132,6 +132,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify footer {string} is displayed")
     public void verifyFooterIsDisplayed(String footer) {
+        BrowserUtils.sleep(1000);
         //I forced MoveIntoView by Grabbing the Copyright Element - That way if address is wrong, it takes screenshot of the footer in the report
         BrowserUtils.moveIntoView(BrowserUtils.getDriver().findElement(By.xpath("//div[@class='footer-copyright']")));
         //Verification code
@@ -276,6 +277,16 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.sleep(1000);
         BrowserUtils.click(page.scrollToTop);
         BrowserUtils.sleep(1000);
+    }
+
+    @Then("Verify header text {string} is displayed")
+    public void verifyHeaderTextIsDisplayed(String headerTxt) {
+        BrowserUtils.isDisplayed3(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS, headerTxt))
+                )
+        );
+
     }
 }
 

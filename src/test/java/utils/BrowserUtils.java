@@ -81,6 +81,13 @@ public class BrowserUtils {
 
     public static void moveIntoView(WebElement element){
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        sleep(1000);
+    }
+
+    public static void moveIntoView2(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("javascript:window.scrollBy(250,450)");
+        sleep(1000);
     }
 
     public static void highlightElement(WebElement element) {
@@ -158,6 +165,13 @@ public class BrowserUtils {
     }
     public static void isDisplayed2(WebElement element){
         waitForElementVisibility(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+
+    public static void isDisplayed3(WebElement element){
+        waitForElementVisibility(element);
+        moveIntoView2(element);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }

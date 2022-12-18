@@ -102,7 +102,7 @@ Feature: Home page tests
   @ASJ-13 @smoke @regression
   Scenario: List of companies
     Then Verify that companies name displayed in one row
-    
+
 
   @ASJ-7 @smoke @regression
   Scenario: General navigation bar
@@ -129,5 +129,19 @@ Feature: Home page tests
   @ASJ-18
   Scenario: Move to top button
     Then Verify a button "scroll to top" is enabled
+
+  @ASJ-19
+  Scenario: Copyright update
+    Then Verify footer "Copyright © 2022 Advance Systems LLC. All Rights Reserved." is displayed
+
+  @ASJ-20
+  Scenario Outline: Main Header section
+    Then Verify header text "<headerTxt>" is displayed
+    Examples:
+      | headerTxt                                                                          |
+      | Welcome to Advance Systems LLC                                                     |
+      | Our Mission is simple, deliver very honest recruitment services to every customer  |
+      | Day in and day out for the last years we’ve been more than just a staffing company |
+
 
 
