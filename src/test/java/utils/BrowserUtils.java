@@ -105,6 +105,7 @@ public class BrowserUtils {
 
     public static void sendKeys(WebElement element, String inputText){
         //TODO: apply report -> logInfo("Entered the text ", element);
+        CucumberLogUtils.logInfo("Entered the text " + element, "false" );
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -113,6 +114,7 @@ public class BrowserUtils {
 
     public static String getText(WebElement element){
         //TODO: apply report -> logInfo("Retrieved the text ", element);
+        CucumberLogUtils.logInfo("Retrieved the text " + element, "false" );
         waitForElementVisibility(element);
         moveIntoView(element);
         highlightElement(element);
@@ -121,6 +123,7 @@ public class BrowserUtils {
 
     public static void click(WebElement element){
         //TODO: apply report -> logInfo("clicked the button ", element);
+        CucumberLogUtils.logInfo("clicked the button " + element, "false" );
         waitForElementClickability(element);
         moveIntoView(element);
         highlightElement(element);
@@ -129,6 +132,7 @@ public class BrowserUtils {
 
     public static void click2(WebElement element){
         //TODO: apply report -> logInfo("clicked the button ", element);
+        CucumberLogUtils.logInfo("clicked the button " + element, "false" );
         waitForElementClickability(element);
         highlightElement(element);
         element.click();
@@ -137,18 +141,21 @@ public class BrowserUtils {
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);
-        CucumberLogUtils.logInfo("Expected: " + expected, "false");
-        CucumberLogUtils.logInfo("Actual: " + actual, "false");
+        CucumberLogUtils.logInfo("Expected: " + expected, "true");
+        CucumberLogUtils.logInfo("Actual: " + actual, "true");
         Assert.assertEquals(expected, actual);
     }
 
     public static void assertFalse(boolean result){
         //TODO: apply report -> logInfo("Expected: " + result);
+        CucumberLogUtils.logInfo("Expected: " + result, "false" );
         Assert.assertFalse(result);
     }
 
     public static void assertTrue(boolean result){
         //TODO: apply report -> logInfo("Expected: " + result);
+
+        CucumberLogUtils.logInfo("Expected: " + result, "false" );
         Assert.assertTrue(result);
     }
 

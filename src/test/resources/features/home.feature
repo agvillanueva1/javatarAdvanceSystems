@@ -85,11 +85,11 @@ Feature: Home page tests
     When I click on social media button "<socialMediaPlatform>"
     Then Verify each button takes user to corresponding page with "<Title>"
     Examples:
-      | socialMediaPlatform | Title    |
-      | Facebook            | Facebook |
-      | Twitter             | Twitter  |
-      | Google              | Google   |
-      | LinkedIn            | LinkedIn |
+      | socialMediaPlatform | Title     |
+      | Facebook            | Facebook  |
+      | Twitter             | Twitter   |
+      | Instagram           | Instagram |
+      | LinkedIn            | LinkedIn  |
 
   @ASJ-13 @smoke @regression
   Scenario: List of companies

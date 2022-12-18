@@ -37,6 +37,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify title text is {string}")
     public void verify_title_text_is(String titleText) {
+        BrowserUtils.sleep(1000);
         String actualTitleText = BrowserUtils.getDriver().getTitle();
         BrowserUtils.assertEquals(titleText, actualTitleText);
     }
@@ -142,7 +143,7 @@ public class HomeSteps implements CommonPage {
 
     @When("I click action button {string}")
     public void iClickActionButton(String joinNowActionBtn) {
-        BrowserUtils.sleep(1000);
+        //BrowserUtils.sleep(1000);
         BrowserUtils.click(BrowserUtils.getDriver().findElement(
                 By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, joinNowActionBtn))));
 
@@ -150,7 +151,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify button takes user to {string} page")
     public void verify_button_takes_user_to_page(String joinUs) {
-        BrowserUtils.sleep(1000);
+        //BrowserUtils.sleep(1000);
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
 
     }
@@ -172,11 +173,13 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
-                        )));
+                ))
+        );
     }
 
     @Then("Verify page navigation bar has url {string}")
     public void verifyPageNavigationBarHasUrl(String titleText) {
+        BrowserUtils.sleep(1000);
         BrowserUtils.switchToNewWindow();
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), titleText);
     }
@@ -189,8 +192,6 @@ public class HomeSteps implements CommonPage {
                 )
         );
         BrowserUtils.sleep(1000);
-
-
     }
 
     @Then("Verify each button takes user to corresponding page with {string}")
@@ -218,6 +219,3 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.click(page.languageButton);
     }
 }
-
-
-
