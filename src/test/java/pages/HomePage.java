@@ -58,6 +58,7 @@ public class HomePage {
     @FindBy(xpath ="//div[@class='owl-item active'][1]/div/div")
     public WebElement testimonialName;
 
-
+    @FindBy (xpath = "//span[@class='icon fa fa-arrow-up']")
+    public WebElement scrollToTop;
 
 }

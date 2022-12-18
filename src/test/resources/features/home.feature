@@ -122,3 +122,12 @@ Feature: Home page tests
     Then Verify "name" is displayed
     Then Verify "state" is displayed
 
+  @ASJ-17
+  Scenario: Newsletter section
+    Then Verify newsletter placeholder "Email Address..." is displayed
+
+  @ASJ-18
+  Scenario: Move to top button
+    Then Verify a button "scroll to top" is enabled
+
+

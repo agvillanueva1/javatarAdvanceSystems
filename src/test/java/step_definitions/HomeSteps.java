@@ -167,7 +167,7 @@ public class HomeSteps implements CommonPage {
         JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
         js.executeScript("window.scrollBy(0, 1000)"); //Scroll vertically down by 1000 pixels
 
-        BrowserUtils.sleep(3000);
+        BrowserUtils.sleep(1000);
 
         BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
@@ -256,6 +256,26 @@ public class HomeSteps implements CommonPage {
        BrowserUtils.isDisplayed(page.testimonialName);
 
 
+    }
+
+    @Then("Verify newsletter placeholder {string} is displayed")
+    public void verifyNewsletterPlaceholderIsDisplayed(String placeholder) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_INPUT_FIELD, placeholder))
+                )
+        );
+    }
+
+    @Then("Verify a button {string} is enabled")
+    public void verifyAButtonIsEnabled(String scrollToTop) {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(0, 1000)");
+
+        BrowserUtils.sleep(1000);
+        BrowserUtils.click(page.scrollToTop);
+        BrowserUtils.sleep(1000);
     }
 }
 
