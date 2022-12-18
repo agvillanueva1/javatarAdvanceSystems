@@ -86,23 +86,15 @@ Feature: Home page tests
     When I click on social media button "<socialMediaPlatform>"
     Then Verify each button takes user to corresponding page with "<Title>"
     Examples:
-      | socialMediaPlatform | Title    |
-      | Facebook            | Facebook |
-      | Twitter             | Twitter  |
-      | Google              | Google   |
-      | LinkedIn            | LinkedIn |
-
-  @ASJ-12
-  Scenario: Testimonials
-    Then Verify header "Words from our Clients" is displayed
-    Then Verify text description is displayed
-    Then Verify client name is displayed
-    Then Verify state is displayed
+      | socialMediaPlatform | Title     |
+      | Facebook            | Facebook  |
+      | Twitter             | Twitter   |
+      | Instagram           | Instagram |
+      | LinkedIn            | LinkedIn  |
 
   @ASJ-13 @smoke @regression
   Scenario: List of companies
     Then Verify that companies name displayed in one row
-    
 
   @ASJ-7 @smoke @regression
   Scenario: General navigation bar
@@ -113,7 +105,6 @@ Feature: Home page tests
     Then Verify navigation bar button "English" is displayed
     Then Verify navigation bar button "Spanish" is displayed
     Then Verify navigation bar button "French" is displayed
-
 
   @ASJ-012
   Scenario: Testimonials
