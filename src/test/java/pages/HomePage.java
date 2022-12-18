@@ -49,4 +49,15 @@ public class HomePage {
     @FindBy(id = "dropdownMenu1")
     public WebElement languageButton;
 
+    @FindBy(xpath = "//div[@class='flex-box']//div//div[2]")
+    public WebElement headerDescription;
+
+    @FindBy(xpath = "//div[@class='flex-box']//h3")
+    public WebElement sectionItems;
+
+    @FindBy(xpath ="//div[@class='owl-item active'][1]/div/div")
+    public WebElement testimonialName;
+
+
+
 }
