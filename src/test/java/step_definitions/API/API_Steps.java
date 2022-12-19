@@ -75,12 +75,6 @@ public class API_Steps {
         Assert.assertTrue(id.length() > 0);
         Assert.assertTrue(duration.length() > 0);
         Assert.assertTrue(name.length() > 0);
-
-        System.out.println("---------------");
-        System.out.println("ID: " + id);
-        System.out.println("Duration: " + duration);
-        System.out.println("Name: " + name);
-
     }
 
 }
