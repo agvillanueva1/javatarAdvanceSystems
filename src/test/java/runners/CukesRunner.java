@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
         stepNotifications = true,
         dryRun = false
         ,tags = "@ASJ-21"
-
 )
 public class CukesRunner {
 }

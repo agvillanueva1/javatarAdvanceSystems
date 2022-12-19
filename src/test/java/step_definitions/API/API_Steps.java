@@ -25,8 +25,8 @@ public class API_Steps {
         RestAssured.baseURI = BASEURI;
     }
 
-    @Then("Verify I can retrieve SDET courses database with status code {int}")
-    public void verify_i_can_retrieve_sdet_courses_database_with_status_code(Integer int1) {
+    @Then("Verify I can retrieve SDET courses database with status code {string}")
+    public void verify_i_can_retrieve_sdet_courses_database_with_status_code(String statusCode) {
         Response response = RestAssured.given()
                 .when()
                 .get(SDETCOURSES)
@@ -38,13 +38,13 @@ public class API_Steps {
                 "Expected Status: " + SC_OK + ". " +
                 "Response Status: " + response.statusCode();
         CucumberLogUtils.logInfo(log, "false");
-        Assert.assertEquals(String.valueOf(response.statusCode()), "200");
+        Assert.assertEquals(String.valueOf(response.statusCode()), statusCode);
 
 
     }
 
-    @Then("Verify I can retrieve Dev courses database with status code {int}")
-    public void verify_i_can_retrieve_dev_courses_database_with_status_code(Integer int1) {
+    @Then("Verify I can retrieve Dev courses database with status code {string}")
+    public void verify_i_can_retrieve_dev_courses_database_with_status_code(String statusCode) {
         response = RestAssured.given()
                 .get(DEVCOURSES)
                 .then()
@@ -57,7 +57,7 @@ public class API_Steps {
                 "Expected Status: " + SC_OK + ". " +
                 "Response Status: " + response.statusCode();
         CucumberLogUtils.logInfo(log, "false");
-        Assert.assertEquals(String.valueOf(response.statusCode()), "200");
+        Assert.assertEquals(String.valueOf(response.statusCode()), statusCode);
     }
 
     @Then("Verify Response Body Contains {string}, {string}, and {string}")
@@ -76,5 +76,4 @@ public class API_Steps {
         Assert.assertTrue(duration.length() > 0);
         Assert.assertTrue(name.length() > 0);
     }
-
 }
