@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 import pages.HomePage;
 import utils.BrowserUtils;
+
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify title text is {string}")
     public void verify_title_text_is(String titleText) {
-        BrowserUtils.sleep(1000);
+        BrowserUtils.sleep(2000);
         String actualTitleText = BrowserUtils.getDriver().getTitle();
         BrowserUtils.assertEquals(titleText, actualTitleText);
     }
@@ -99,7 +100,6 @@ public class HomeSteps implements CommonPage {
     @When("I click link text {string}")
     public void i_click_link_text(String linkText) {
         BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(linkText)));
-
     }
 
     @Then("Verify destination window has url as {string}")
@@ -126,9 +126,9 @@ public class HomeSteps implements CommonPage {
 
     }
 
-
     @Then("Verify footer {string} is displayed")
     public void verifyFooterIsDisplayed(String footer) {
+        BrowserUtils.sleep(1000);
         //I forced MoveIntoView by Grabbing the Copyright Element - That way if address is wrong, it takes screenshot of the footer in the report
         BrowserUtils.moveIntoView(BrowserUtils.getDriver().findElement(By.xpath("//div[@class='footer-copyright']")));
         //Verification code
@@ -152,8 +152,6 @@ public class HomeSteps implements CommonPage {
 
     }
 
-    //----------------------------------------------------------
-
     @Then("Verify footer social media link {string} is displayed")
     public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
@@ -166,14 +164,16 @@ public class HomeSteps implements CommonPage {
         JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
         js.executeScript("window.scrollBy(0, 1000)"); //Scroll vertically down by 1000 pixels
 
+        BrowserUtils.sleep(1000);
+
         BrowserUtils.click(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_TEXT2_CONTAINS, navBar)
-                ))
+                        ))
         );
     }
 
-    @Then("Verify page navigation bar has url {string}")
+    @Then("Verify page navigation bar has correct title {string}")
     public void verifyPageNavigationBarHasUrl(String titleText) {
         BrowserUtils.sleep(1000);
         BrowserUtils.switchToNewWindow();
@@ -196,8 +196,6 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().contains(pageTitle));
         BrowserUtils.getDriver().navigate().back();
     }
-
-    //----------------------------------------------------------
 
     @Then("Verify header {string} is displayed")
     public void verifyHeaderIsDisplayed(String sectionHeaderTestimonials) {
@@ -236,7 +234,6 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
                 By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
         );
-
     }
 
     @When("I click a language selection button")
@@ -246,7 +243,37 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify {string} is displayed")
     public void verify_is_displayed(String txt) {
-       BrowserUtils.isDisplayed(page.testimonialName);
+        BrowserUtils.isDisplayed(page.testimonialName);
 
     }
+
+    @Then("Verify newsletter placeholder {string} is displayed")
+    public void verifyNewsletterPlaceholderIsDisplayed(String placeholder) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_INPUT_FIELD, placeholder))
+                )
+        );
+    }
+
+    @Then("Verify a button {string} is enabled")
+    public void verifyAButtonIsEnabled(String scrollToTop) {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(0, 1000)");
+
+        BrowserUtils.sleep(1000);
+        BrowserUtils.click(page.scrollToTop);
+        BrowserUtils.sleep(1000);
+    }
+
+    @Then("Verify header text {string} is displayed")
+    public void verifyHeaderTextIsDisplayed(String headerTxt) {
+        BrowserUtils.isDisplayed3(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS, headerTxt))
+                )
+        );
+    }
 }
+
