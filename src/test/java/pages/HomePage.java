@@ -61,6 +61,14 @@ public class HomePage {
     @FindBy (xpath = "//span[@class='icon fa fa-arrow-up']")
     public WebElement scrollToTop;
 
+    @FindBy(xpath = "//div[@class='author-information']/h4")
+    public WebElement AboutUsName;
+
+    @FindBy(xpath = "//div[@class='author-information']/div")
+    public WebElement AboutUsTitle;
+
+
+
 
 
 }
