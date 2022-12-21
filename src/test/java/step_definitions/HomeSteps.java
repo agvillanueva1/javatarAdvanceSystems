@@ -71,6 +71,9 @@ public class HomeSteps implements CommonPage {
             case "home":
                 BrowserUtils.click2(page.homeBtn);
                 break;
+            case "services":
+                BrowserUtils.click2(page.servicesBtn);
+                break;
             default:
                 BrowserUtils.click2(BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_BUTTON, button))));
@@ -275,5 +278,6 @@ public class HomeSteps implements CommonPage {
                 )
         );
     }
+
 }
 

@@ -61,6 +61,7 @@ public class HomePage {
     @FindBy (xpath = "//span[@class='icon fa fa-arrow-up']")
     public WebElement scrollToTop;
 
-
+    @FindBy (xpath = "(//a[text()='Services'])[1]")
+    public WebElement servicesBtn;
 
 }
