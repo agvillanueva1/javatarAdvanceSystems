@@ -135,8 +135,8 @@ public class HomeSteps implements CommonPage {
         //I forced MoveIntoView by Grabbing the Copyright Element - That way if address is wrong, it takes screenshot of the footer in the report
         BrowserUtils.moveIntoView(BrowserUtils.getDriver().findElement(By.xpath("//div[@class='footer-copyright']")));
         //Verification code
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
+                By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
         )));
     }
 
@@ -234,8 +234,11 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify navigation bar button {string} is displayed")
     public void verifyNavigationBarButtonIsDisplayed(String navButton) {
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)))
+        BrowserUtils.isDisplayed(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)
+                        )
+                )
         );
     }
 
@@ -256,8 +259,7 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_INPUT_FIELD, placeholder))
-                )
-        );
+                ));
     }
 
     @Then("Verify a button {string} is enabled")
@@ -280,4 +282,6 @@ public class HomeSteps implements CommonPage {
     }
 
 }
+
+
 

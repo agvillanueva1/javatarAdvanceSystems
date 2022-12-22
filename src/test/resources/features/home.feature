@@ -134,6 +134,12 @@ Feature: Home page tests
       | Our Mission is simple, deliver very honest recruitment services to every customer  |
       | Day in and day out for the last years we’ve been more than just a staffing company |
 
+    @ASJ-29
+    Scenario: About Us page Main Content
+      Then I click on navBar "About Us"
+      Then Verify About Us header "Welcome to Advance Systems LLC." is displayed
+      Then verify section contain "name" and "title" of the person
+
 
 
 

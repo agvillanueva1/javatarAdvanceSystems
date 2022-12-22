@@ -5,8 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BrowserUtils;
 
-import javax.xml.xpath.XPath;
-
 public class HomePage {
 
     public HomePage() {
@@ -63,5 +61,11 @@ public class HomePage {
 
     @FindBy (xpath = "(//a[text()='Services'])[1]")
     public WebElement servicesBtn;
+
+    @FindBy(xpath = "//div[@class='author-information']/h4")
+    public WebElement AboutUsName;
+
+    @FindBy(xpath = "//div[@class='author-information']/div")
+    public WebElement AboutUsTitle;
 
 }
