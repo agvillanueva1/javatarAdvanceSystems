@@ -1,19 +1,26 @@
 package step_definitions.API;
 
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import utils.ConfigReader;
 import utils.CucumberLogUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class API_Steps {
 
     String dataId, dataDuration, dataName;
-    String resultFirstName, resultLastName, resultEmailAddress;
+    String resultFirstName, resultLastName, resultEmailAddress, token, errorMessage;
 
     Response response;
     final String BASEURI = ConfigReader.readProperty("baseURI");
@@ -21,6 +28,10 @@ public class API_Steps {
     final String SDETCOURSES = ConfigReader.readProperty("endPointSDETCourses");
     final String STUDENTS = ConfigReader.readProperty("endPointStudents");
     final String ADMIN = ConfigReader.readProperty("endPointAdminInfoDb");
+    final String BEARERTOKEN = ConfigReader.readProperty("bearerToken");
+
+
+
 
 
     @Given("I send a request to url")
@@ -28,8 +39,8 @@ public class API_Steps {
         RestAssured.baseURI = BASEURI;
     }
 
-    @Then("Verify I can retrieve SDET courses database with status code {int}")
-    public void verify_i_can_retrieve_sdet_courses_database_with_status_code(Integer int1) {
+    @Then("Verify I can retrieve SDET courses database with status code {string}")
+    public void verify_i_can_retrieve_sdet_courses_database_with_status_code(String statusCode) {
         Response response = RestAssured.given()
                 .when()
                 .get(SDETCOURSES)
@@ -41,13 +52,13 @@ public class API_Steps {
                 "Expected Status: " + SC_OK + ". " +
                 "Response Status: " + response.statusCode();
         CucumberLogUtils.logInfo(log, "false");
-        Assert.assertEquals(String.valueOf(response.statusCode()), "200");
+        Assert.assertEquals(String.valueOf(response.statusCode()), statusCode);
 
 
     }
 
-    @Then("Verify I can retrieve Dev courses database with status code {int}")
-    public void verify_i_can_retrieve_dev_courses_database_with_status_code(Integer int1) {
+    @Then("Verify I can retrieve Dev courses database with status code {string}")
+    public void verify_i_can_retrieve_dev_courses_database_with_status_code(String statusCode) {
         response = RestAssured.given()
                 .get(DEVCOURSES)
                 .then()
@@ -60,7 +71,7 @@ public class API_Steps {
                 "Expected Status: " + SC_OK + ". " +
                 "Response Status: " + response.statusCode();
         CucumberLogUtils.logInfo(log, "false");
-        Assert.assertEquals(String.valueOf(response.statusCode()), "200");
+        Assert.assertEquals(String.valueOf(response.statusCode()), statusCode);
     }
 
     @Then("Verify Response Body Contains {string}, {string}, and {string}")
@@ -113,4 +124,34 @@ public class API_Steps {
         Assert.assertTrue(lastName.length() > 0);
         Assert.assertTrue(email.length() > 0);
     }
+
+    @When("User adds basic auth with username {string} and password {string}")
+    public void userAddsBasicAuthWithUsernameAndPassword(String userName, String passWord) {
+        Map<String, String> map = new HashMap<>();
+        map.put("username", userName);
+        map.put("password", passWord);
+    }
+
+    @And("User send GET request to the endpoint {string}")
+    public void userSendGETRequestToTheEndpoint(String token) {
+        response = RestAssured.given()
+                .auth().preemptive().basic("user", "user123")
+                .when()
+                .get(token)
+                .prettyPeek()
+                .then()
+                .extract()
+                .response();
+    }
+
+    @Then("response should contain a token {string}")
+    public void responseShouldContainAToken(String bearerToken) {
+        token = response.jsonPath().getString(bearerToken);
+
+        String log = "Token: " + token + ". ";
+        CucumberLogUtils.logInfo(log, "false");
+
+        Assert.assertTrue(bearerToken.length() > 0);
+    }
+
 }

@@ -41,6 +41,9 @@ public class BrowserUtils {
         }
     }
 
+    public static WebDriver checkDriverStatus(){
+        return driver;
+    }
 
     private static void initializeDriver(String browser){
         switch (browser){
@@ -184,6 +187,7 @@ public class BrowserUtils {
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
+
 
     public static boolean isEnabled(WebElement element){
         waitForElementClickability(element);

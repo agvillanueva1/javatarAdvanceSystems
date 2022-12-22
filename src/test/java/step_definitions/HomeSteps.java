@@ -38,7 +38,7 @@ public class HomeSteps implements CommonPage {
     public void verifyAddressIsDisplayed(String txt) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, txt)
-        )), page.AboutUsTitle);
+        )));
     }
 
     @Then("Verify header is displayed")
@@ -71,6 +71,9 @@ public class HomeSteps implements CommonPage {
             case "home":
                 BrowserUtils.click2(page.homeBtn);
                 break;
+            case "services":
+                BrowserUtils.click2(page.servicesBtn);
+                break;
             default:
                 BrowserUtils.click2(BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_BUTTON, button))));
@@ -81,19 +84,19 @@ public class HomeSteps implements CommonPage {
     public void verifyPhoneNumberIsDisplayed(String phone) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_TEXT, phone)
-        )), page.AboutUsTitle);
+        )));
 
     }
 
     @Then("Verify Headers {string} is displayed")
     public void verify_headers_is_displayed(String txt) {
-        BrowserUtils.isDisplayed(page.sectionItems, page.AboutUsTitle);
+        BrowserUtils.isDisplayed(page.sectionItems);
 
     }
 
     @Then("Verify description {string} is displayed")
     public void verify_description_is_displayed(String txt) {
-        BrowserUtils.isDisplayed(page.headerDescription, page.AboutUsTitle);
+        BrowserUtils.isDisplayed(page.headerDescription);
 
     }
 
@@ -132,9 +135,9 @@ public class HomeSteps implements CommonPage {
         //I forced MoveIntoView by Grabbing the Copyright Element - That way if address is wrong, it takes screenshot of the footer in the report
         BrowserUtils.moveIntoView(BrowserUtils.getDriver().findElement(By.xpath("//div[@class='footer-copyright']")));
         //Verification code
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
-                String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
-        )), page.AboutUsTitle);
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
+                By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS, footer)
+        )));
     }
 
     @When("I click action button {string}")
@@ -148,7 +151,7 @@ public class HomeSteps implements CommonPage {
     @Then("Verify button takes user to {string} page")
     public void verify_button_takes_user_to_page(String joinUs) {
         //BrowserUtils.sleep(1000);
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))), page.AboutUsTitle);
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT, joinUs))));
 
     }
 
@@ -156,7 +159,7 @@ public class HomeSteps implements CommonPage {
     public void verifyFooterSocialMediaLinkIsDisplayed(String socialMediaFooter) {
         BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
                 String.format(XPATH_TEMPLATE_CLASS_CONTAINS, socialMediaFooter.toLowerCase())
-        )), page.AboutUsTitle);
+        )));
     }
 
     @When("I click navigation bar {string}")
@@ -205,14 +208,14 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify text description is displayed")
     public void verifyTextDescriptionIsDisplayed() {
-        BrowserUtils.isDisplayed(page.descriptionTestimonials, page.AboutUsTitle);
+        BrowserUtils.isDisplayed(page.descriptionTestimonials);
     }
 
     @Then("Verify client name is displayed")
     public void verifyClientNameIsDisplayed() {
         List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("//div//div[@class='owl-item active']//div//following-sibling::h3"));
         for (WebElement each : data) {
-            BrowserUtils.isDisplayed(each, page.AboutUsTitle);
+            BrowserUtils.isDisplayed(each);
         }
     }
 
@@ -220,20 +223,23 @@ public class HomeSteps implements CommonPage {
     public void verifyStateIsDisplayed() {
         List<WebElement> data = BrowserUtils.getDriver().findElements(By.xpath("(//div//div[@class='owl-item active']//div//following-sibling::div)[4]"));
         for (WebElement each : data) {
-            BrowserUtils.isDisplayed(each, page.AboutUsTitle);
+            BrowserUtils.isDisplayed(each);
         }
     }
 
     @Then("Verify that companies name displayed in one row")
     public void verifyThatCompaniesNameDisplayedInOneRow() {
-        BrowserUtils.isDisplayed(page.companiesName, page.AboutUsTitle);
+        BrowserUtils.isDisplayed(page.companiesName);
     }
 
     @Then("Verify navigation bar button {string} is displayed")
     public void verifyNavigationBarButtonIsDisplayed(String navButton) {
-        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton))),
-                page.AboutUsTitle);
+        BrowserUtils.isDisplayed(
+                BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT, navButton)
+                        )
+                )
+        );
     }
 
     @When("I click a language selection button")
@@ -243,7 +249,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify {string} is displayed")
     public void verify_is_displayed(String txt) {
-        BrowserUtils.isDisplayed(page.testimonialName, page.AboutUsTitle);
+        BrowserUtils.isDisplayed(page.testimonialName);
 
     }
 
@@ -253,8 +259,7 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.isDisplayed(
                 BrowserUtils.getDriver().findElement(
                         By.xpath(String.format(XPATH_TEMPLATE_INPUT_FIELD, placeholder))
-                ),
-                page.AboutUsTitle);
+                ));
     }
 
     @Then("Verify a button {string} is enabled")
@@ -276,22 +281,6 @@ public class HomeSteps implements CommonPage {
         );
     }
 
-    @Then("I click on navBar {string}")
-    public void iClickOnNavBar(String AboutUs) {
-        BrowserUtils.click(BrowserUtils.getDriver().findElement(By.linkText(AboutUs)));
-        BrowserUtils.switchToNewWindow();
-        BrowserUtils.sleep(1000);
-    }
-    @Then("Verify About Us header {string} is displayed")
-    public void verifyAboutUsHeaderIsDisplayed(String txt) {
-        BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_TEXT, txt)));
-    }
-    @Then("verify section contain {string} and {string} of the person")
-    public void verifySectionContainAndOfThePerson(String txt, String txt2) {
-        BrowserUtils.isDisplayed(page.AboutUsName,page.AboutUsTitle);
-
-    }
 }
 
 
