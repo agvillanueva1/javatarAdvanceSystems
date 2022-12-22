@@ -18,7 +18,7 @@ public class BrowserUtils {
 
     }
 
-    private static WebDriver driver = null;
+    private static WebDriver driver;
 
     public static WebDriver getDriver(){
         if (driver == null)

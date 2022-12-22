@@ -1,8 +1,10 @@
 package step_definitions.API;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -18,7 +20,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 public class API_Steps {
 
     String dataId, dataDuration, dataName;
-    String resultFirstName, resultLastName, resultEmailAddress;
+    String resultFirstName, resultLastName, resultEmailAddress, token, errorMessage;
 
     Response response;
     final String BASEURI = ConfigReader.readProperty("baseURI");
@@ -123,22 +125,33 @@ public class API_Steps {
         Assert.assertTrue(email.length() > 0);
     }
 
-    @Then("bearer token")
-    public void bearerToken() {
+    @When("User adds basic auth with username {string} and password {string}")
+    public void userAddsBasicAuthWithUsernameAndPassword(String userName, String passWord) {
         Map<String, String> map = new HashMap<>();
-        map.put("username", "user");
-        map.put("password", "user123");
+        map.put("username", userName);
+        map.put("password", passWord);
+    }
 
+    @And("User send GET request to the endpoint {string}")
+    public void userSendGETRequestToTheEndpoint(String token) {
         response = RestAssured.given()
                 .auth().preemptive().basic("user", "user123")
                 .when()
-                .get(BEARERTOKEN)
+                .get(token)
                 .prettyPeek()
                 .then()
-                .statusCode(SC_OK)
                 .extract()
                 .response();
+    }
 
+    @Then("response should contain a token {string}")
+    public void responseShouldContainAToken(String bearerToken) {
+        token = response.jsonPath().getString(bearerToken);
+
+        String log = "Token: " + token + ". ";
+        CucumberLogUtils.logInfo(log, "false");
+
+        Assert.assertTrue(bearerToken.length() > 0);
     }
 
 }

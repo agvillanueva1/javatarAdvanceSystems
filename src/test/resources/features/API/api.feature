@@ -15,12 +15,8 @@ Feature: API
     Then Verify I can retrieve admin info database with status code "200"
     Then Verify Admins Info DB Response Body Contains "firstName", "lastName", and "email"
 
-#  @ASJ-27 @API
-#  Scenario: Bearer token retrieval
-#    Then bearer token
-#    When User adds basic auth with username "username" and password "user123"
-#    And User send GET request to the endpoint "/departments/gettoken"
-#    Then response should contain a token
-#    Then response should contain a message "Invalid username or password"
-
-
+  @ASJ-27 @API
+  Scenario: Bearer token retrieval
+    When User adds basic auth with username "user" and password "user123"
+    And User send GET request to the endpoint "/api/school/departments/gettoken"
+    Then response should contain a token "token"

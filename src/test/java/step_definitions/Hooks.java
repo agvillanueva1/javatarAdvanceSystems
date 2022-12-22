@@ -10,7 +10,7 @@ public class Hooks {
 
     @Before
     public void setUp(Scenario scenario){
-        BrowserUtils.getDriver();
+        //BrowserUtils.getDriver();
         CucumberLogUtils.initScenario(scenario);
 
     }
@@ -18,11 +18,16 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         if (BrowserUtils.checkDriverStatus() != null) {
+
             if (scenario.isFailed()) {
+
                 CucumberLogUtils.logFail("Scenario failed", true);
+            } else {
+                CucumberLogUtils.logPass("Scenario passed", true);
+
             }
-            BrowserUtils.quitDriver();
         }
+        BrowserUtils.quitDriver();
     }
 
 }
