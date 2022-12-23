@@ -26,6 +26,7 @@ public class AboutUsSteps implements CommonPage {
     public void verifyAboutUsHeaderIsDisplayed(String txt) {
         BrowserUtils.getDriver().findElement(
                 By.xpath(String.format(XPATH_TEMPLATE_TEXT, txt)));
+        System.out.println(txt);
     }
     @Then("verify section contain {string} and {string} of the person")
     public void verifySectionContainAndOfThePerson(String txt, String txt2) {
