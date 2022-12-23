@@ -104,7 +104,7 @@ public class BrowserUtils {
                     //TODO:apply report screenshot here
                     CucumberLogUtils.logInfo(element.toString(), ConfigReader.readProperty("takeScreenshot"));
                 } else {
-                    sleep(600);
+                    sleep(100);
                     js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
                 }
             } catch (Exception e) {
