@@ -154,4 +154,28 @@ public class API_Steps {
         Assert.assertTrue(bearerToken.length() > 0);
     }
 
+    @Then("User adds new {string} and {string} to the endpoint {string}")
+    public void userAddsNewAndToTheEndpoint(String name, String duration, String endpoint) {
+        Map<String, String> Map = new HashMap<>();
+        Map.put("name", name);
+        Map.put("duration", duration);
+
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .and()
+                .body(Map)
+                .when()
+                .post(endpoint)
+                .then()
+                .log().all()
+                .extract()
+                .response();
+    }
+
+    @And("User should get status code {int}")
+    public void userShouldGetStatusCode(int statusCode) {
+        Assert.assertEquals(statusCode, response.statusCode());
+    }
 }
+
+

@@ -62,10 +62,10 @@ public class HomePage {
     @FindBy (xpath = "(//a[text()='Services'])[1]")
     public WebElement servicesBtn;
 
-    @FindBy(xpath = "//div[@class='author-information']/h4")
-    public WebElement AboutUsName;
-
-    @FindBy(xpath = "//div[@class='author-information']/div")
-    public WebElement AboutUsTitle;
+//    @FindBy(xpath = "//div[@class='author-information']/h4")
+//    public WebElement AboutUsName;
+//
+//    @FindBy(xpath = "//div[@class='author-information']/div")
+//    public WebElement AboutUsTitle;
 
 }
